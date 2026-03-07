@@ -92,56 +92,67 @@
             </div>
         </nav>
         <!-- Swiper Slider -->
-        <div class="container mx-auto relative group">
+        <div class="container mx-auto relative group px-4 lg:px-0">
             <div class="swiper mySwiper rounded-md">
                 <div class="swiper-wrapper">
                     <!-- slider-1 -->
                     <div class="swiper-slide w-full">
-                        <img src="images/banner1.png" class="w-full object-cover" />
+                        <img src="images/banner1.png" class="w-full h-[200px] md:h-auto object-cover object-center" />
                     </div>
                     <!-- silder-2 -->
                     <div class="swiper-slide w-full">
-                        <img src="images/banner2.png" class="w-full object-cover" />
+                        <img src="images/banner2.png" class="w-full h-[200px] md:h-auto object-cover object-center" />
                     </div>
                     <!-- silder-3 -->
                     <div class="swiper-slide w-full">
-                        <img src="images/banner3.png" class="w-full object-cover" />
+                        <img src="images/banner3.png" class="w-full h-[200px] md:h-auto object-cover object-center" />
                     </div>
                     <!-- silder-4 -->
                     <div class="swiper-slide w-full">
-                        <img src="images/banner4.png" class="w-full object-cover" />
+                        <img src="images/banner4.png" class="w-full h-[200px] md:h-auto object-cover object-center" />
                     </div>
                 </div>
 
                 <!-- Navigation Arrows -->
                 <div
-                    class="swiper-button-next text-black hover:text-bg-fruts scale-50 bg-white w-24 h-24 rounded-full font-extrabold">
+                    class="swiper-button-next !hidden md:!flex !items-center !justify-center !top-1/2 !-translate-y-1/2 !mt-0 text-black hover:text-bg-fruts scale-50 bg-white w-24 h-24 rounded-full font-extrabold">
                 </div>
                 <div
-                    class="swiper-button-prev text-black hover:text-bg-fruts scale-50 bg-white w-24 h-24 rounded-full font-extrabold">
+                    class="swiper-button-prev !hidden md:!flex !items-center !justify-center !top-1/2 !-translate-y-1/2 !mt-0 text-black hover:text-bg-fruts scale-50 bg-white w-24 h-24 rounded-full font-extrabold">
                 </div>
 
                 <!-- Auto-play Circles (Dots) overlay
                 <div class="swiper-pagination !bottom-5 lg:!bottom-10"></div> -->
             </div>
         </div>
-        <!-- fruit grid for desktop -->
-        <div class="container mx-auto hidden lg:grid place-items-center relative z-10">
-            <div class="justify-center gap-16 rounded-xl flex bg-white drop-shadow-lg p-8 w-10/12 -mt-24">
-                <div class="text-center"><img class="hover:scale-110 transition-all duration-300" src="images/fruit1.png" alt="">
-                    <p class="mt-2">Grape</p>
+        <!-- fruit grid -->
+        <div class="container mx-auto flex justify-center place-items-center relative z-10 px-4 lg:px-0">
+            <div
+                class="justify-center items-center gap-4 mx-auto sm:gap-8 md:gap-10 lg:gap-16 rounded-xl flex flex-nowrap overflow-x-auto bg-white drop-shadow-lg p-4 sm:p-6 lg:p-8 w-11/12 lg:w-10/12 -mt-10 md:-mt-16 lg:-mt-24">
+                <div class="text-center flex-shrink-0"><img
+                        class="w-10 sm:w-12 md:w-16 lg:w-auto mx-auto hover:scale-110 transition-all duration-300"
+                        src="images/fruit1.png" alt="">
+                    <!-- <p class="mt-2 text-xs md:text-sm lg:text-base">Grape</p> -->
                 </div>
-                <div class="text-center"><img class="hover:scale-110 transition-all duration-300" src="images/fruit2.png" alt="">
-                    <p class="mt-2">Orange</p>
+                <div class="text-center flex-shrink-0"><img
+                        class="w-10 sm:w-12 md:w-16 lg:w-auto mx-auto hover:scale-110 transition-all duration-300"
+                        src="images/fruit2.png" alt="">
+                    <!-- <p class="mt-2 text-xs md:text-sm lg:text-base">Orange</p> -->
                 </div>
-                <div class="text-center"><img class="hover:scale-110 transition-all duration-300" src="images/fruit3.png" alt="">
-                    <p class="mt-2">Mango</p>
+                <div class="text-center flex-shrink-0"><img
+                        class="w-10 sm:w-12 md:w-16 lg:w-auto mx-auto hover:scale-110 transition-all duration-300"
+                        src="images/fruit3.png" alt="">
+                    <!-- <p class="mt-2 text-xs md:text-sm lg:text-base">Mango</p> -->
                 </div>
-                <div class="text-center"><img class="hover:scale-110 transition-all duration-300" src="images/fruit4.png" alt="">
-                    <p class="mt-2">Strawberry</p>
+                <div class="text-center flex-shrink-0"><img
+                        class="w-10 sm:w-12 md:w-16 lg:w-auto mx-auto hover:scale-110 transition-all duration-300"
+                        src="images/fruit4.png" alt="">
+                    <!-- <p class="mt-2 text-xs md:text-sm lg:text-base">Strawberry</p> -->
                 </div>
-                <div class="text-center"><img class="hover:scale-110 transition-all duration-300" src="images/fruit5.png" alt="">
-                    <p class="mt-2">Pomegranate</p>
+                <div class="text-center flex-shrink-0"><img
+                        class="w-10 sm:w-12 md:w-16 lg:w-auto mx-auto hover:scale-110 transition-all duration-300"
+                        src="images/fruit5.png" alt="">
+                    <!-- <p class="mt-2 text-xs md:text-sm lg:text-base">Pomegranate</p> -->
                 </div>
             </div>
         </div>
