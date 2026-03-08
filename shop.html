@@ -60,7 +60,10 @@
           <!-- Dynamic products from owner will appear here -->
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div
+          id="static-products"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+        >
           <!-- Shop items will be listed here, reuse index card styles -->
           <div class="card bg-base-100 p-4 shadow-xl border">
             <figure><img src="images/fruit6.png" alt="Apples" /></figure>
@@ -131,37 +134,82 @@
     <!-- Scripts -->
     <script src="script.js"></script>
     <script>
-      function loadDynamicProducts() {
+      function loadDynamicProducts(searchQuery = "") {
         const products = JSON.parse(
           localStorage.getItem("shop_products") || "[]",
         );
-        const container = document.getElementById("dynamic-products");
-        if (products.length === 0) return;
+        const dynamicContainer = document.getElementById("dynamic-products");
+        const staticContainer = document.getElementById("static-products");
+        const staticCards = staticContainer.querySelectorAll(".card");
 
-        container.innerHTML = `<h2 class="col-span-full text-3xl font-bold mb-4 text-left border-b-2 border-bg-fruts pb-2">Newly Added by Owner</h2>`;
+        let dynamicFound = false;
+        let staticFound = false;
 
-        products.forEach((p) => {
-          const card = document.createElement("div");
-          card.className = "card bg-base-100 p-4 shadow-xl border";
-          card.innerHTML = `
-                    <figure><img src="${p.image}" alt="${p.name}" class="h-48 object-cover w-full" /></figure>
-                    <div class="card-body gap-2">
-                        <div class="flex justify-between items-start">
-                            <h2 class="card-title">${p.price}</h2>
-                            <span class="badge badge-sm bg-bg-fruts text-white border-none">${p.category}</span>
-                        </div>
-                        <hr>
-                        <h3 class="text-center font-extrabold text-xl">${p.name}</h3>
-                        <div class="card-actions justify-center mt-4">
-                            <button class="btn bg-bg-fruts text-white hover:bg-red-600 border-none px-10 btn-add-cart">Add to Cart</button>
-                        </div>
-                    </div>
-                `;
-          container.appendChild(card);
+        dynamicContainer.innerHTML = "";
+
+        // Filter dynamic products
+        const filteredDynamic = products.filter(
+          (p) =>
+            p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            p.category.toLowerCase().includes(searchQuery.toLowerCase()),
+        );
+
+        if (filteredDynamic.length > 0) {
+          dynamicFound = true;
+          dynamicContainer.innerHTML = `<h2 class="col-span-full text-3xl font-bold mb-4 text-left border-b-2 border-bg-fruts pb-2">${searchQuery ? "Search Results (New)" : "Newly Added by Owner"}</h2>`;
+          filteredDynamic.forEach((p) => {
+            const card = document.createElement("div");
+            card.className = "card bg-base-100 p-4 shadow-xl border";
+            card.innerHTML = `
+                      <figure><img src="${p.image}" alt="${p.name}" class="h-48 object-cover w-full" /></figure>
+                      <div class="card-body gap-2">
+                          <div class="flex justify-between items-start">
+                              <h2 class="card-title">${p.price}</h2>
+                              <span class="badge badge-sm bg-bg-fruts text-white border-none">${p.category}</span>
+                          </div>
+                          <hr>
+                          <h3 class="text-center font-extrabold text-xl">${p.name}</h3>
+                          <div class="card-actions justify-center mt-4">
+                              <button class="btn bg-bg-fruts text-white hover:bg-red-600 border-none px-10 btn-add-cart">Add to Cart</button>
+                          </div>
+                      </div>
+                  `;
+            dynamicContainer.appendChild(card);
+          });
+        }
+
+        // Filter static products
+        staticCards.forEach((card) => {
+          const name = card.querySelector("h3").innerText.toLowerCase();
+          if (name.includes(searchQuery.toLowerCase())) {
+            card.style.display = "flex";
+            staticFound = true;
+          } else {
+            card.style.display = "none";
+          }
         });
+
+        // Show/hide headers or message if nothing found
+        if (!dynamicFound && !staticFound && searchQuery) {
+          dynamicContainer.innerHTML = `<div class="col-span-full py-20 text-center"><h2 class="text-2xl font-bold text-gray-400">No products found for "${searchQuery}"</h2><button onclick="window.location.href='shop.html'" class="btn btn-ghost text-bg-fruts mt-4">View All Products</button></div>`;
+        }
       }
 
-      document.addEventListener("DOMContentLoaded", loadDynamicProducts);
+      document.addEventListener("DOMContentLoaded", () => {
+        // Check for search query in URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchQuery = urlParams.get("search") || "";
+
+        // Update header input if there's a search
+        const headerSearchInput = document.getElementById(
+          "header-search-input",
+        );
+        if (headerSearchInput && searchQuery) {
+          headerSearchInput.value = searchQuery;
+        }
+
+        loadDynamicProducts(searchQuery);
+      });
     </script>
   </body>
 </html>

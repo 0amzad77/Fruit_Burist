@@ -147,6 +147,32 @@ function updateHeaderUI() {
     authBtn.innerText = "Login";
     authBtn.href = "account.html";
   }
+
+  // Search Functionality (Initialize after header loads)
+  const searchInput = document.querySelector("#header-search-input");
+  const searchBtn = document.querySelector("#header-search-btn");
+
+  const handleSearch = () => {
+    const query = searchInput.value.trim();
+    if (query) {
+      if (window.location.pathname.includes("shop.html")) {
+        if (typeof loadDynamicProducts === "function") {
+          loadDynamicProducts(query);
+        }
+      } else {
+        window.location.href = `shop.html?search=${encodeURIComponent(query)}`;
+      }
+    }
+  };
+
+  if (searchBtn && searchInput) {
+    searchBtn.onclick = handleSearch;
+    searchInput.onkeypress = (e) => {
+      if (e.key === "Enter") {
+        handleSearch();
+      }
+    };
+  }
 }
 
 // Initialize components and other logic
