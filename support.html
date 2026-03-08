@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - Fruit Burist</title>
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- tailwind and daisy UI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lato google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/bac2c0934e.js" crossorigin="anonymous"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- tailwind custom color -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                        'bg-fruts': '#F85559',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-Lato">
+    <div id="header-placeholder"></div>
+
+    <main class="container mx-auto px-4 lg:px-0 py-20">
+        <section class="text-center">
+            <h1 class="text-5xl font-extrabold mb-10">Customer Support</h1>
+            <p class="max-w-2xl mx-auto mb-16 text-lg">We're here to help you. If you have any questions or concerns, please reach out to our team.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-left">
+                <div class="bg-base-100 p-8 rounded-2xl shadow-xl border border-gray-100">
+                    <div class="bg-bg-fruts/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-phone text-3xl text-bg-fruts"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Phone Support</h3>
+                    <p class="text-gray-600">Call us at +880 123 456 7890<br>Mon - Fri, 9am - 6pm</p>
+                </div>
+                <div class="bg-base-100 p-8 rounded-2xl shadow-xl border border-gray-100">
+                    <div class="bg-bg-fruts/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-envelope text-3xl text-bg-fruts"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Email Support</h3>
+                    <p class="text-gray-600">Email us at support@fruitburist.com<br>Response within 24 hours</p>
+                </div>
+                <div class="bg-base-100 p-8 rounded-2xl shadow-xl border border-gray-100">
+                    <div class="bg-bg-fruts/10 w-16 h-16 rounded-full flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-location-dot text-3xl text-bg-fruts"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Visit Us</h3>
+                    <p class="text-gray-600">123 Fruit Lane, Green City<br>Dhaka, Bangladesh</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+
+</html>

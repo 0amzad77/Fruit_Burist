@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Client Dashboard - Fruit Burist</title>
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- tailwind and daisy UI -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lato google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/bac2c0934e.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- tailwind custom color -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: "#da373d",
+              "bg-fruts": "#F85559",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="font-Lato">
+    <div id="header-placeholder"></div>
+
+    <main class="container mx-auto px-4 lg:px-0 py-20">
+      <div class="flex flex-col lg:flex-row gap-10">
+        <!-- Sidebar -->
+        <div class="w-full lg:w-1/4">
+          <div
+            class="bg-base-100 p-6 rounded-2xl shadow-xl border border-gray-100"
+          >
+            <div class="text-center mb-8">
+              <div class="avatar placeholder mb-4 relative group">
+                <div
+                  class="bg-bg-fruts text-neutral-content rounded-full w-24 overflow-hidden border-4 border-white shadow-lg"
+                >
+                  <img
+                    id="client-avatar-img"
+                    src=""
+                    alt=""
+                    class="hidden w-full h-full object-cover"
+                  />
+                  <span
+                    id="client-avatar-placeholder"
+                    class="text-3xl text-white"
+                    ><i class="fa-solid fa-user"></i
+                  ></span>
+                </div>
+              </div>
+              <h2 id="client-email" class="text-xl font-bold">Client Name</h2>
+              <p class="text-gray-500">Premium Member</p>
+            </div>
+            <ul class="menu bg-base-100 w-full p-0 gap-2">
+              <li>
+                <a
+                  onclick="showClientSection('overview')"
+                  id="btn-client-overview"
+                  class="active bg-bg-fruts text-white cursor-pointer"
+                  ><i class="fa-solid fa-gauge"></i> Overview</a
+                >
+              </li>
+              <li>
+                <a href="checkout.html"
+                  ><i class="fa-solid fa-cart-shopping"></i> My Cart</a
+                >
+              </li>
+              <li>
+                <a
+                  onclick="showClientSection('orders')"
+                  id="btn-client-orders"
+                  class="cursor-pointer"
+                  ><i class="fa-solid fa-clock-rotate-left"></i> Order
+                  History</a
+                >
+              </li>
+              <li>
+                <a
+                  onclick="showClientSection('settings')"
+                  id="btn-client-settings"
+                  class="cursor-pointer"
+                  ><i class="fa-solid fa-gear"></i> Settings</a
+                >
+              </li>
+              <li>
+                <a
+                  onclick="Auth.logout()"
+                  class="text-red-500 font-bold cursor-pointer mt-4"
+                  ><i class="fa-solid fa-right-from-bracket"></i> Logout</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div id="client-content-area" class="w-full lg:w-3/4 space-y-10">
+          <!-- Overview Section -->
+          <div id="section-client-overview" class="space-y-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div
+                class="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-bg-fruts"
+              >
+                <h4 class="text-gray-500 font-bold uppercase text-xs mb-2">
+                  Total Orders
+                </h4>
+                <p class="text-4xl font-black">12</p>
+              </div>
+              <div
+                class="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-blue-500"
+              >
+                <h4 class="text-gray-500 font-bold uppercase text-xs mb-2">
+                  Active Cart Items
+                </h4>
+                <p id="dashboard-cart-count" class="text-4xl font-black">0</p>
+              </div>
+              <div
+                class="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-green-500"
+              >
+                <h4 class="text-gray-500 font-bold uppercase text-xs mb-2">
+                  Loyalty Points
+                </h4>
+                <p class="text-4xl font-black">450</p>
+              </div>
+            </div>
+
+            <div
+              class="bg-base-100 rounded-2xl shadow-xl border border-gray-100 overflow-hidden"
+            >
+              <div
+                class="p-6 border-b border-gray-100 flex justify-between items-center"
+              >
+                <h3 class="text-2xl font-bold">Recent Orders</h3>
+                <button class="btn btn-sm btn-ghost text-bg-fruts">
+                  View All
+                </button>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="table w-full">
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Date</th>
+                      <th>Items</th>
+                      <th>Status</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="font-bold">#FB-8821</td>
+                      <td>Oct 24, 2023</td>
+                      <td>Apples, Oranges</td>
+                      <td>
+                        <span class="badge badge-success text-white"
+                          >Delivered</span
+                        >
+                      </td>
+                      <td class="font-bold">$45.00</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Settings / Profile Edit Section -->
+          <div id="section-client-settings" class="hidden">
+            <div
+              class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100"
+            >
+              <h3 class="text-3xl font-extrabold mb-8">Edit Profile</h3>
+              <form
+                id="client-profile-form"
+                class="grid grid-cols-1 md:grid-cols-2 gap-6"
+              >
+                <div class="form-control md:col-span-2">
+                  <label class="label"
+                    ><span class="label-text font-bold"
+                      >Profile Picture</span
+                    ></label
+                  >
+                  <input
+                    type="file"
+                    id="client-profile-img"
+                    accept="image/*"
+                    class="file-input file-input-bordered focus:border-bg-fruts w-full"
+                  />
+                </div>
+                <div class="form-control">
+                  <label class="label"
+                    ><span class="label-text font-bold">Full Name</span></label
+                  >
+                  <input
+                    type="text"
+                    id="client-full-name"
+                    placeholder="Your Name"
+                    class="input input-bordered focus:border-bg-fruts"
+                    required
+                  />
+                </div>
+                <div class="form-control">
+                  <label class="label"
+                    ><span class="label-text font-bold"
+                      >Email Address</span
+                    ></label
+                  >
+                  <input
+                    type="email"
+                    placeholder="email@example.com"
+                    class="input input-bordered focus:border-bg-fruts"
+                    required
+                  />
+                </div>
+                <div class="form-control">
+                  <label class="label"
+                    ><span class="label-text font-bold">Phone</span></label
+                  >
+                  <input
+                    type="tel"
+                    placeholder="+880..."
+                    class="input input-bordered focus:border-bg-fruts"
+                  />
+                </div>
+                <div class="form-control md:col-span-2">
+                  <label class="label"
+                    ><span class="label-text font-bold"
+                      >New Password</span
+                    ></label
+                  >
+                  <input
+                    type="password"
+                    placeholder="Leave blank to keep current"
+                    class="input input-bordered focus:border-bg-fruts"
+                  />
+                </div>
+                <div class="form-control md:col-span-2 mt-4">
+                  <button
+                    type="submit"
+                    class="btn bg-bg-fruts text-white hover:bg-red-600 border-none w-full"
+                  >
+                    Update Profile
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="script.js"></script>
+    <script>
+      function showClientSection(sectionId) {
+        document
+          .querySelectorAll("#client-content-area > div")
+          .forEach((div) => div.classList.add("hidden"));
+        document
+          .getElementById(`section-client-${sectionId}`)
+          .classList.remove("hidden");
+
+        // Update active state in menu
+        document
+          .querySelectorAll(".menu a")
+          .forEach((a) =>
+            a.classList.remove("active", "bg-bg-fruts", "text-white"),
+          );
+        const activeBtn = document.getElementById(`btn-client-${sectionId}`);
+        if (activeBtn)
+          activeBtn.classList.add("active", "bg-bg-fruts", "text-white");
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (!user || user.role !== "client") {
+          Swal.fire({
+            icon: "error",
+            title: "Access Denied",
+            text: "Please login to your account.",
+            confirmButtonColor: "#F85559",
+          }).then(() => {
+            window.location.href = "account.html";
+          });
+          return;
+        }
+        document.getElementById("client-email").innerText =
+          user.name || user.email;
+
+        // Set profile image if exists
+        if (user.image) {
+          const img = document.getElementById("client-avatar-img");
+          const placeholder = document.getElementById(
+            "client-avatar-placeholder",
+          );
+          img.src = user.image;
+          img.classList.remove("hidden");
+          placeholder.classList.add("hidden");
+        }
+
+        // Fill form if exists
+        const nameInput = document.getElementById("client-full-name");
+        if (nameInput) nameInput.value = user.name || "";
+
+        const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        document.getElementById("dashboard-cart-count").innerText = cart.length;
+      });
+    </script>
+  </body>
+</html>

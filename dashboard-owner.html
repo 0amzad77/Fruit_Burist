@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Owner Dashboard - Fruit Burist</title>
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- tailwind and daisy UI -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lato google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/bac2c0934e.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- tailwind custom color -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: "#da373d",
+              "bg-fruts": "#F85559",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="font-Lato">
+    <div id="header-placeholder"></div>
+
+    <main class="container mx-auto px-4 lg:px-0 py-20">
+      <div class="flex flex-col lg:flex-row gap-10">
+        <!-- Sidebar -->
+        <div class="w-full lg:w-1/4">
+          <div
+            class="bg-base-100 p-6 rounded-2xl shadow-xl border border-gray-100"
+          >
+            <div class="text-center mb-8">
+              <div class="avatar placeholder mb-4 relative group">
+                <div
+                  class="bg-blue-600 text-neutral-content rounded-full w-24 overflow-hidden border-4 border-white shadow-lg"
+                >
+                  <img
+                    id="owner-avatar-img"
+                    src=""
+                    alt=""
+                    class="hidden w-full h-full object-cover"
+                  />
+                  <span
+                    id="owner-avatar-placeholder"
+                    class="text-3xl text-white"
+                    ><i class="fa-solid fa-shop"></i
+                  ></span>
+                </div>
+              </div>
+              <h2 id="owner-email" class="text-xl font-bold">Owner Name</h2>
+              <p class="text-gray-500">Shop Manager</p>
+            </div>
+            <ul class="menu bg-base-100 w-full p-0 gap-2">
+              <li>
+                <a
+                  id="btn-overview"
+                  class="active bg-blue-600 text-white cursor-pointer"
+                  ><i class="fa-solid fa-chart-line"></i> Sales Overview</a
+                >
+              </li>
+              <li>
+                <a id="btn-inventory" class="cursor-pointer"
+                  ><i class="fa-solid fa-boxes-stacked"></i> Inventory</a
+                >
+              </li>
+              <li>
+                <a id="btn-add-product" class="cursor-pointer"
+                  ><i class="fa-solid fa-plus"></i> Add Product</a
+                >
+              </li>
+              <li>
+                <a
+                  id="btn-settings"
+                  class="cursor-pointer"
+                  onclick="showSection('settings')"
+                  ><i class="fa-solid fa-gear"></i> Settings</a
+                >
+              </li>
+              <li>
+                <a
+                  onclick="Auth.logout()"
+                  class="text-red-500 font-bold cursor-pointer mt-4"
+                  ><i class="fa-solid fa-right-from-bracket"></i> Logout</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Content Area -->
+        <div id="content-area" class="w-full lg:w-3/4 space-y-10">
+          <!-- Settings / Profile Section -->
+          <div id="section-settings" class="hidden">
+            <div
+              class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100"
+            >
+              <h3 class="text-3xl font-extrabold mb-8">Store Settings</h3>
+              <form
+                id="owner-profile-form"
+                class="grid grid-cols-1 md:grid-cols-2 gap-6"
+              >
+                <div class="form-control md:col-span-2">
+                  <label class="label"
+                    ><span class="label-text font-bold"
+                      >Profile Picture</span
+                    ></label
+                  >
+                  <input
+                    type="file"
+                    id="owner-profile-img"
+                    accept="image/*"
+                    class="file-input file-input-bordered focus:border-blue-600 w-full"
+                  />
+                </div>
+                <div class="form-control">
+                  <label class="label"
+                    ><span class="label-text font-bold">Store Name</span></label
+                  >
+                  <input
+                    type="text"
+                    id="owner-store-name"
+                    placeholder="Fruit Burist Official"
+                    class="input input-bordered focus:border-blue-600"
+                    required
+                  />
+                </div>
+                <div class="form-control">
+                  <label class="label"
+                    ><span class="label-text font-bold"
+                      >Contact Email</span
+                    ></label
+                  >
+                  <input
+                    type="email"
+                    placeholder="owner@fruitburist.com"
+                    class="input input-bordered focus:border-blue-600"
+                    required
+                  />
+                </div>
+                <div class="form-control md:col-span-2">
+                  <label class="label"
+                    ><span class="label-text font-bold"
+                      >Store Description</span
+                    ></label
+                  >
+                  <textarea
+                    class="textarea textarea-bordered focus:border-blue-600"
+                    placeholder="About your store..."
+                  ></textarea>
+                </div>
+                <div class="form-control md:col-span-2 mt-4">
+                  <button
+                    type="submit"
+                    class="btn bg-blue-600 text-white hover:bg-blue-700 border-none w-full"
+                  >
+                    Save Changes
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <!-- Overview Section -->
+          <div id="section-overview" class="space-y-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div
+                class="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-blue-600"
+              >
+                <h4 class="text-gray-500 font-bold uppercase text-xs mb-2">
+                  Daily Revenue
+                </h4>
+                <p class="text-4xl font-black">$1,250.00</p>
+              </div>
+              <div
+                class="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-green-500"
+              >
+                <h4 class="text-gray-500 font-bold uppercase text-xs mb-2">
+                  Total Sales
+                </h4>
+                <p class="text-4xl font-black">45</p>
+              </div>
+              <div
+                class="bg-white p-8 rounded-2xl shadow-lg border-b-4 border-red-500"
+              >
+                <h4 class="text-gray-500 font-bold uppercase text-xs mb-2">
+                  Pending Orders
+                </h4>
+                <p class="text-4xl font-black">8</p>
+              </div>
+            </div>
+
+            <div
+              class="bg-base-100 rounded-2xl shadow-xl border border-gray-100 overflow-hidden"
+            >
+              <div
+                class="p-6 border-b border-gray-100 flex justify-between items-center"
+              >
+                <h3 class="text-2xl font-bold">Inventory Alert</h3>
+                <button class="btn btn-sm btn-ghost text-blue-600">
+                  View All
+                </button>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="table w-full">
+                  <thead>
+                    <tr>
+                      <th>Fruit Name</th>
+                      <th>Stock Level</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="font-bold">Apples</td>
+                      <td>
+                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                          <div
+                            class="bg-red-600 h-2.5 rounded-full"
+                            style="width: 15%"
+                          ></div>
+                        </div>
+                        <span class="text-xs">15 kg left</span>
+                      </td>
+                      <td>
+                        <span class="badge badge-error text-white"
+                          >Low Stock</span
+                        >
+                      </td>
+                      <td>
+                        <button class="btn btn-xs btn-outline">Restock</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Add Product Section -->
+          <div id="section-add-product" class="hidden">
+            <div
+              class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100"
+            >
+              <h3 class="text-3xl font-extrabold mb-8">Add New Product</h3>
+              <form
+                id="add-product-form"
+                class="grid grid-cols-1 md:grid-cols-2 gap-6"
+              >
+                <div class="form-control">
+                  <label class="label"
+                    ><span class="label-text font-bold"
+                      >Product Name</span
+                    ></label
+                  >
+                  <input
+                    type="text"
+                    id="prod-name"
+                    placeholder="e.g. Premium Mango"
+                    class="input input-bordered focus:border-blue-600"
+                    required
+                  />
+                </div>
+                <div class="form-control">
+                  <label class="label"
+                    ><span class="label-text font-bold">Category</span></label
+                  >
+                  <select
+                    id="prod-category"
+                    class="select select-bordered focus:border-blue-600"
+                  >
+                    <option value="seasonal">Seasonal Fruits</option>
+                    <option value="tropical">Tropical Fruits</option>
+                    <option value="exotic">Exotic Fruits</option>
+                    <option value="citrus">Citrus Fruits</option>
+                    <option value="berries">Berries</option>
+                  </select>
+                </div>
+                <div class="form-control">
+                  <label class="label"
+                    ><span class="label-text font-bold"
+                      >Price Range (e.g. 10$-15$)</span
+                    ></label
+                  >
+                  <input
+                    type="text"
+                    id="prod-price"
+                    placeholder="10$-15$"
+                    class="input input-bordered focus:border-blue-600"
+                    required
+                  />
+                </div>
+                <div class="form-control">
+                  <label class="label"
+                    ><span class="label-text font-bold"
+                      >Product Image</span
+                    ></label
+                  >
+                  <input
+                    type="file"
+                    id="prod-image-file"
+                    accept="image/*"
+                    class="file-input file-input-bordered focus:border-blue-600 w-full"
+                    required
+                  />
+                </div>
+                <div class="form-control md:col-span-2 mt-4">
+                  <button
+                    type="submit"
+                    class="btn bg-blue-600 text-white hover:bg-blue-700 border-none w-full"
+                  >
+                    Create Product
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Inventory Management Section -->
+          <div id="section-inventory" class="hidden">
+            <div
+              class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100"
+            >
+              <h3 class="text-3xl font-extrabold mb-8">Full Inventory</h3>
+              <div class="overflow-x-auto">
+                <table class="table w-full">
+                  <thead>
+                    <tr>
+                      <th>Image</th>
+                      <th>Product Name</th>
+                      <th>Category</th>
+                      <th>Price</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="inventory-list">
+                    <!-- Dynamic rows -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Edit Product Modal -->
+          <dialog id="edit_product_modal" class="modal">
+            <div class="modal-box max-w-2xl">
+              <h3 class="font-bold text-2xl mb-6">Edit Product</h3>
+              <form
+                id="edit-product-form"
+                class="grid grid-cols-1 md:grid-cols-2 gap-6"
+              >
+                <input type="hidden" id="edit-prod-id" />
+                <div class="form-control">
+                  <label class="label"
+                    ><span class="label-text font-bold"
+                      >Product Name</span
+                    ></label
+                  >
+                  <input
+                    type="text"
+                    id="edit-prod-name"
+                    class="input input-bordered focus:border-blue-600"
+                    required
+                  />
+                </div>
+                <div class="form-control">
+                  <label class="label"
+                    ><span class="label-text font-bold">Category</span></label
+                  >
+                  <select
+                    id="edit-prod-category"
+                    class="select select-bordered focus:border-blue-600"
+                  >
+                    <option value="seasonal">Seasonal Fruits</option>
+                    <option value="tropical">Tropical Fruits</option>
+                    <option value="exotic">Exotic Fruits</option>
+                    <option value="citrus">Citrus Fruits</option>
+                    <option value="berries">Berries</option>
+                  </select>
+                </div>
+                <div class="form-control">
+                  <label class="label"
+                    ><span class="label-text font-bold"
+                      >Price Range</span
+                    ></label
+                  >
+                  <input
+                    type="text"
+                    id="edit-prod-price"
+                    class="input input-bordered focus:border-blue-600"
+                    required
+                  />
+                </div>
+                <div class="form-control">
+                  <label class="label"
+                    ><span class="label-text font-bold"
+                      >Update Image</span
+                    ></label
+                  >
+                  <input
+                    type="file"
+                    id="edit-prod-image-file"
+                    accept="image/*"
+                    class="file-input file-input-bordered focus:border-blue-600 w-full"
+                  />
+                </div>
+                <div class="form-control md:col-span-2">
+                  <p class="text-sm text-gray-500 mb-2">Current Image:</p>
+                  <img
+                    id="edit-prod-preview"
+                    src=""
+                    alt="Preview"
+                    class="w-32 h-32 object-cover rounded-lg border"
+                  />
+                </div>
+                <div class="modal-action md:col-span-2">
+                  <button
+                    type="button"
+                    class="btn btn-ghost"
+                    onclick="edit_product_modal.close()"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    class="btn bg-blue-600 text-white hover:bg-blue-700 border-none px-10"
+                  >
+                    Save Changes
+                  </button>
+                </div>
+              </form>
+            </div>
+          </dialog>
+        </div>
+      </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="script.js"></script>
+    <script>
+      function showSection(sectionId) {
+        document
+          .querySelectorAll("#content-area > div")
+          .forEach((div) => div.classList.add("hidden"));
+        document
+          .getElementById(`section-${sectionId}`)
+          .classList.remove("hidden");
+
+        // Update active state in menu
+        document
+          .querySelectorAll(".menu a")
+          .forEach((a) =>
+            a.classList.remove("active", "bg-blue-600", "text-white"),
+          );
+        const activeBtn = document.getElementById(`btn-${sectionId}`);
+        if (activeBtn)
+          activeBtn.classList.add("active", "bg-blue-600", "text-white");
+      }
+
+      function loadInventory() {
+        const products = JSON.parse(
+          localStorage.getItem("shop_products") || "[]",
+        );
+        const list = document.getElementById("inventory-list");
+        list.innerHTML = "";
+
+        products.forEach((p) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+                     <td><img src="${p.image}" class="w-16 h-16 object-cover rounded-lg shadow-sm" alt="${p.name}"></td>
+                     <td class="font-bold">${p.name}</td>
+                     <td><span class="badge badge-outline">${p.category}</span></td>
+                     <td class="font-bold text-blue-600">${p.price}</td>
+                     <td>
+                        <div class="flex gap-2">
+                            <button class="btn btn-xs btn-info text-white" onclick="openEditModal(${p.id})">Edit</button>
+                            <button class="btn btn-xs btn-error text-white" onclick="deleteProduct(${p.id})">Delete</button>
+                        </div>
+                     </td>
+                 `;
+          list.appendChild(row);
+        });
+      }
+
+      function openEditModal(id) {
+        const products = JSON.parse(
+          localStorage.getItem("shop_products") || "[]",
+        );
+        const product = products.find((p) => p.id === id);
+        if (!product) return;
+
+        document.getElementById("edit-prod-id").value = product.id;
+        document.getElementById("edit-prod-name").value = product.name;
+        document.getElementById("edit-prod-category").value = product.category;
+        document.getElementById("edit-prod-price").value = product.price;
+        document.getElementById("edit-prod-preview").src = product.image;
+
+        edit_product_modal.showModal();
+      }
+
+      // Handle Edit Form Submit
+      document
+        .getElementById("edit-product-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const id = parseInt(document.getElementById("edit-prod-id").value);
+          const name = document.getElementById("edit-prod-name").value;
+          const category = document.getElementById("edit-prod-category").value;
+          const price = document.getElementById("edit-prod-price").value;
+          const imageFile = document.getElementById("edit-prod-image-file")
+            .files[0];
+
+          let products = JSON.parse(
+            localStorage.getItem("shop_products") || "[]",
+          );
+          const index = products.findIndex((p) => p.id === id);
+
+          if (index !== -1) {
+            products[index].name = name;
+            products[index].category = category;
+            products[index].price = price;
+
+            if (imageFile) {
+              products[index].image = await fileToBase64(imageFile);
+            }
+
+            localStorage.setItem("shop_products", JSON.stringify(products));
+            Swal.fire({
+              icon: "success",
+              title: "Updated!",
+              text: "Product updated successfully!",
+              confirmButtonColor: "#3B82F6",
+            });
+            edit_product_modal.close();
+            loadInventory();
+          }
+        });
+
+      function deleteProduct(id) {
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            let products = JSON.parse(
+              localStorage.getItem("shop_products") || "[]",
+            );
+            products = products.filter((p) => p.id !== id);
+            localStorage.setItem("shop_products", JSON.stringify(products));
+            loadInventory();
+            Swal.fire("Deleted!", "Your product has been deleted.", "success");
+          }
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const user = JSON.parse(localStorage.getItem("user"));
+        if (!user || user.role !== "owner") {
+          Swal.fire({
+            icon: "error",
+            title: "Access Denied",
+            text: "Please login as a Shop Owner.",
+            confirmButtonColor: "#3B82F6",
+          }).then(() => {
+            window.location.href = "account.html";
+          });
+          return;
+        }
+        document.getElementById("owner-email").innerText =
+          user.name || user.email;
+
+        // Set profile image if exists
+        if (user.image) {
+          const img = document.getElementById("owner-avatar-img");
+          const placeholder = document.getElementById(
+            "owner-avatar-placeholder",
+          );
+          img.src = user.image;
+          img.classList.remove("hidden");
+          placeholder.classList.add("hidden");
+        }
+
+        // Fill form if exists
+        const nameInput = document.getElementById("owner-store-name");
+        if (nameInput) nameInput.value = user.name || "";
+
+        // Navigation Handlers
+        document
+          .getElementById("btn-overview")
+          .addEventListener("click", () => showSection("overview"));
+        document
+          .getElementById("btn-inventory")
+          .addEventListener("click", () => {
+            showSection("inventory");
+            loadInventory();
+          });
+        document
+          .getElementById("btn-add-product")
+          .addEventListener("click", () => showSection("add-product"));
+      });
+    </script>
+  </body>
+</html>

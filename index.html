@@ -1,618 +1,754 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fruit_Burist</title>
     <!-- stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
     <!-- tailwind and daisy UI -->
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lato google font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
     <!-- Fontawesome -->
-    <script src="https://kit.fontawesome.com/bac2c0934e.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/bac2c0934e.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- tailwind custom color -->
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        clifford: '#da373d',
-                        'bg-fruts': '#F85559',
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: "#da373d",
+              "bg-fruts": "#F85559",
+            },
+          },
+        },
+      };
     </script>
-</head>
+  </head>
 
-<body class="font-Lato">
+  <body class="font-Lato">
+    <div id="header-placeholder"></div>
     <header>
-        <!-- header menu -->
-        <nav class="container mx-auto">
-            <div
-                class="navbar lg:bg-bg-fruts lg:justify-between rounded-full lg:px-8 py-4 lg:my-10 flex-col lg:flex-row gap-4 lg:gap-0">
-                <div class="navbar-start w-full lg:w-auto flex justify-between lg:justify-start">
-                    <div class="dropdown">
-                        <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M4 6h16M4 12h8m-8 6h16" />
-                            </svg>
-                        </div>
-                        <ul tabindex="0"
-                            class="menu menu-sm dropdown-content bg-white rounded-box z-[2] mt-3 w-52 p-2 text-base shadow text-black">
-                            <li><a>Home</a></li>
-                            <li><a>About us</a></li>
-                            <li><a>Shop</a></li>
-                            <li><a>All Fruits</a></li>
-                        </ul>
-                    </div>
-                    <div class="hidden lg:flex text-white">
-                        <ul class="menu menu-horizontal text-base font-semibold px-1">
-                            <li><a>Home</a></li>
-                            <li><a>About us</a></li>
-                            <li><a>Shop</a></li>
-                            <li><a>All Fruits</a></li>
-                        </ul>
-                    </div>
-                    <!-- Logo for mobile -->
-                    <div class="lg:hidden flex items-center gap-2">
-                        <img src="images/logo.png" alt="Fruit Burist" class="w-8">
-                        <h1 class="text-2xl font-semibold">Fruit Burist</h1>
-                    </div>
-                </div>
-                <div class="navbar-center hidden lg:flex gap-4">
-                    <img src="images/logo.png" alt="Fruit Burist">
-                    <a>
-                        <h1 class="text-4xl text-white font-semibold whitespace-nowrap">Fruit Burist</h1>
-                    </a>
-                </div>
-                <div class="navbar-end w-full lg:w-auto relative">
-                    <div class="relative w-full lg:w-auto">
-                        <input type="search" name="serch" placeholder="Search Here"
-                            class="bg-white h-12 px-5 pr-12 rounded-full text-sm focus:outline-none w-full lg:w-64 border lg:border-none">
-                        <button type="submit" class="absolute right-4 top-1/2 -translate-y-1/2">
-                            <svg class="h-4 w-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 56.966 56.966">
-                                <path
-                                    d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
+      <!-- Swiper Slider -->
+      <div class="container mx-auto relative group px-4 lg:px-0">
+        <div class="swiper mySwiper rounded-md">
+          <div class="swiper-wrapper">
+            <!-- slider-1 -->
+            <div class="swiper-slide w-full">
+              <img
+                src="images/banner1.png"
+                class="w-full h-[200px] md:h-auto object-cover object-center"
+              />
             </div>
-        </nav>
-        <!-- Swiper Slider -->
-        <div class="container mx-auto relative group px-4 lg:px-0">
-            <div class="swiper mySwiper rounded-md">
-                <div class="swiper-wrapper">
-                    <!-- slider-1 -->
-                    <div class="swiper-slide w-full">
-                        <img src="images/banner1.png" class="w-full h-[200px] md:h-auto object-cover object-center" />
-                    </div>
-                    <!-- silder-2 -->
-                    <div class="swiper-slide w-full">
-                        <img src="images/banner2.png" class="w-full h-[200px] md:h-auto object-cover object-center" />
-                    </div>
-                    <!-- silder-3 -->
-                    <div class="swiper-slide w-full">
-                        <img src="images/banner3.png" class="w-full h-[200px] md:h-auto object-cover object-center" />
-                    </div>
-                    <!-- silder-4 -->
-                    <div class="swiper-slide w-full">
-                        <img src="images/banner4.png" class="w-full h-[200px] md:h-auto object-cover object-center" />
-                    </div>
-                </div>
+            <!-- silder-2 -->
+            <div class="swiper-slide w-full">
+              <img
+                src="images/banner2.png"
+                class="w-full h-[200px] md:h-auto object-cover object-center"
+              />
+            </div>
+            <!-- silder-3 -->
+            <div class="swiper-slide w-full">
+              <img
+                src="images/banner3.png"
+                class="w-full h-[200px] md:h-auto object-cover object-center"
+              />
+            </div>
+            <!-- silder-4 -->
+            <div class="swiper-slide w-full">
+              <img
+                src="images/banner4.png"
+                class="w-full h-[200px] md:h-auto object-cover object-center"
+              />
+            </div>
+          </div>
 
-                <!-- Navigation Arrows -->
-                <div
-                    class="swiper-button-next !hidden md:!flex !items-center !justify-center !top-1/2 !-translate-y-1/2 !mt-0 text-black hover:text-bg-fruts scale-50 bg-white w-24 h-24 rounded-full font-extrabold">
-                </div>
-                <div
-                    class="swiper-button-prev !hidden md:!flex !items-center !justify-center !top-1/2 !-translate-y-1/2 !mt-0 text-black hover:text-bg-fruts scale-50 bg-white w-24 h-24 rounded-full font-extrabold">
-                </div>
+          <!-- Navigation Arrows -->
+          <div
+            class="swiper-button-next !hidden md:!flex !items-center !justify-center !top-1/2 !-translate-y-1/2 !mt-0 text-black hover:text-bg-fruts scale-50 bg-white w-24 h-24 rounded-full font-extrabold"
+          ></div>
+          <div
+            class="swiper-button-prev !hidden md:!flex !items-center !justify-center !top-1/2 !-translate-y-1/2 !mt-0 text-black hover:text-bg-fruts scale-50 bg-white w-24 h-24 rounded-full font-extrabold"
+          ></div>
 
-                <!-- Auto-play Circles (Dots) overlay
+          <!-- Auto-play Circles (Dots) overlay
                 <div class="swiper-pagination !bottom-5 lg:!bottom-10"></div> -->
-            </div>
         </div>
-        <!-- fruit grid -->
-        <div class="container mx-auto flex justify-center place-items-center relative z-10 px-4 lg:px-0">
-            <div
-                class="justify-center items-center gap-4 mx-auto sm:gap-8 md:gap-10 lg:gap-16 rounded-xl flex flex-nowrap overflow-x-auto bg-white drop-shadow-lg p-4 sm:p-6 lg:p-8 w-11/12 lg:w-10/12 -mt-10 md:-mt-16 lg:-mt-24">
-                <div class="text-center flex-shrink-0"><img
-                        class="w-10 sm:w-12 md:w-16 lg:w-auto mx-auto hover:scale-110 transition-all duration-300"
-                        src="images/fruit1.png" alt="">
-                    <!-- <p class="mt-2 text-xs md:text-sm lg:text-base">Grape</p> -->
-                </div>
-                <div class="text-center flex-shrink-0"><img
-                        class="w-10 sm:w-12 md:w-16 lg:w-auto mx-auto hover:scale-110 transition-all duration-300"
-                        src="images/fruit2.png" alt="">
-                    <!-- <p class="mt-2 text-xs md:text-sm lg:text-base">Orange</p> -->
-                </div>
-                <div class="text-center flex-shrink-0"><img
-                        class="w-10 sm:w-12 md:w-16 lg:w-auto mx-auto hover:scale-110 transition-all duration-300"
-                        src="images/fruit3.png" alt="">
-                    <!-- <p class="mt-2 text-xs md:text-sm lg:text-base">Mango</p> -->
-                </div>
-                <div class="text-center flex-shrink-0"><img
-                        class="w-10 sm:w-12 md:w-16 lg:w-auto mx-auto hover:scale-110 transition-all duration-300"
-                        src="images/fruit4.png" alt="">
-                    <!-- <p class="mt-2 text-xs md:text-sm lg:text-base">Strawberry</p> -->
-                </div>
-                <div class="text-center flex-shrink-0"><img
-                        class="w-10 sm:w-12 md:w-16 lg:w-auto mx-auto hover:scale-110 transition-all duration-300"
-                        src="images/fruit5.png" alt="">
-                    <!-- <p class="mt-2 text-xs md:text-sm lg:text-base">Pomegranate</p> -->
-                </div>
-            </div>
+      </div>
+      <!-- fruit grid -->
+      <div
+        class="container mx-auto flex justify-center place-items-center relative z-10 px-4 lg:px-0"
+      >
+        <div
+          class="justify-center items-center gap-4 mx-auto sm:gap-8 md:gap-10 lg:gap-16 rounded-xl flex flex-nowrap overflow-x-auto bg-white drop-shadow-lg p-4 sm:p-6 lg:p-8 w-11/12 lg:w-10/12 -mt-10 md:-mt-16 lg:-mt-24"
+        >
+          <div class="text-center flex-shrink-0">
+            <img
+              class="w-10 sm:w-12 md:w-16 lg:w-auto mx-auto hover:scale-110 transition-all duration-300"
+              src="images/fruit1.png"
+              alt=""
+            />
+            <!-- <p class="mt-2 text-xs md:text-sm lg:text-base">Grape</p> -->
+          </div>
+          <div class="text-center flex-shrink-0">
+            <img
+              class="w-10 sm:w-12 md:w-16 lg:w-auto mx-auto hover:scale-110 transition-all duration-300"
+              src="images/fruit2.png"
+              alt=""
+            />
+            <!-- <p class="mt-2 text-xs md:text-sm lg:text-base">Orange</p> -->
+          </div>
+          <div class="text-center flex-shrink-0">
+            <img
+              class="w-10 sm:w-12 md:w-16 lg:w-auto mx-auto hover:scale-110 transition-all duration-300"
+              src="images/fruit3.png"
+              alt=""
+            />
+            <!-- <p class="mt-2 text-xs md:text-sm lg:text-base">Mango</p> -->
+          </div>
+          <div class="text-center flex-shrink-0">
+            <img
+              class="w-10 sm:w-12 md:w-16 lg:w-auto mx-auto hover:scale-110 transition-all duration-300"
+              src="images/fruit4.png"
+              alt=""
+            />
+            <!-- <p class="mt-2 text-xs md:text-sm lg:text-base">Strawberry</p> -->
+          </div>
+          <div class="text-center flex-shrink-0">
+            <img
+              class="w-10 sm:w-12 md:w-16 lg:w-auto mx-auto hover:scale-110 transition-all duration-300"
+              src="images/fruit5.png"
+              alt=""
+            />
+            <!-- <p class="mt-2 text-xs md:text-sm lg:text-base">Pomegranate</p> -->
+          </div>
         </div>
+      </div>
     </header>
     <main class="container mx-auto">
-        <!-- Deal of the day -->
-        <section class="mt-20 lg:mt-32 px-4 lg:px-0">
-            <div class="flex flex-col lg:flex-row justify-between items-center gap-8">
-                <div class="text-center lg:text-left">
-                    <h2 class="text-4xl lg:text-5xl font-extrabold">
-                        Deal of the day
-                    </h2>
-                    <p class="mt-5 max-w-lg mx-auto lg:mx-0">
-                        Contrary to popular belief, is not simply random text. It has roots in a piece of classical
-                        Latin literature from 45 BC, making it over 2000 years old.
-                    </p>
+      <!-- Deal of the day -->
+      <section class="mt-20 lg:mt-32 px-4 lg:px-0">
+        <div
+          class="flex flex-col lg:flex-row justify-between items-center gap-8"
+        >
+          <div class="text-center lg:text-left">
+            <h2 class="text-4xl lg:text-5xl font-extrabold">Deal of the day</h2>
+            <p class="mt-5 max-w-lg mx-auto lg:mx-0">
+              Contrary to popular belief, is not simply random text. It has
+              roots in a piece of classical Latin literature from 45 BC, making
+              it over 2000 years old.
+            </p>
+          </div>
+          <div class="flex flex-col items-center">
+            <div class="flex gap-4 lg:gap-10 text-2xl lg:text-4xl">
+              <div class="flex flex-col items-center gap-2">
+                <div
+                  id="days"
+                  class="bg-bg-fruts p-4 lg:p-5 text-white rounded-lg drop-shadow-lg w-16 lg:w-24 text-center"
+                >
+                  29
                 </div>
-                <div class="flex flex-col items-center">
-                    <div class="flex gap-4 lg:gap-10 text-2xl lg:text-4xl">
-                        <div class="flex flex-col items-center gap-2">
-                            <div id="days"
-                                class="bg-bg-fruts p-4 lg:p-5 text-white rounded-lg drop-shadow-lg w-16 lg:w-24 text-center">
-                                29</div>
-                            <span class="text-sm font-semibold">Days</span>
-                        </div>
-                        <div class="flex flex-col items-center gap-2">
-                            <div id="hours"
-                                class="bg-bg-fruts p-4 lg:p-5 text-white rounded-lg drop-shadow-lg w-16 lg:w-24 text-center">
-                                15</div>
-                            <span class="text-sm font-semibold">Hours</span>
-                        </div>
-                        <div class="flex flex-col items-center gap-2">
-                            <div id="minutes"
-                                class="bg-bg-fruts p-4 lg:p-5 text-white rounded-lg drop-shadow-lg w-16 lg:w-24 text-center">
-                                25</div>
-                            <span class="text-sm font-semibold">Min</span>
-                        </div>
-                        <div class="flex flex-col items-center gap-2">
-                            <div id="seconds"
-                                class="bg-bg-fruts p-4 lg:p-5 text-white rounded-lg drop-shadow-lg w-16 lg:w-24 text-center">
-                                08</div>
-                            <span class="text-sm font-semibold">Sec</span>
-                        </div>
-                    </div>
+                <span class="text-sm font-semibold">Days</span>
+              </div>
+              <div class="flex flex-col items-center gap-2">
+                <div
+                  id="hours"
+                  class="bg-bg-fruts p-4 lg:p-5 text-white rounded-lg drop-shadow-lg w-16 lg:w-24 text-center"
+                >
+                  15
                 </div>
+                <span class="text-sm font-semibold">Hours</span>
+              </div>
+              <div class="flex flex-col items-center gap-2">
+                <div
+                  id="minutes"
+                  class="bg-bg-fruts p-4 lg:p-5 text-white rounded-lg drop-shadow-lg w-16 lg:w-24 text-center"
+                >
+                  25
+                </div>
+                <span class="text-sm font-semibold">Min</span>
+              </div>
+              <div class="flex flex-col items-center gap-2">
+                <div
+                  id="seconds"
+                  class="bg-bg-fruts p-4 lg:p-5 text-white rounded-lg drop-shadow-lg w-16 lg:w-24 text-center"
+                >
+                  08
+                </div>
+                <span class="text-sm font-semibold">Sec</span>
+              </div>
             </div>
-        </section>
-        <!-- card -->
-        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4 lg:px-0 mt-20">
-            <!-- first card -->
-            <div class="card bg-base-100 p-4 shadow-xl border">
-                <figure>
-                    <img src="images/fruit6.png" alt="Shoes" />
-                </figure>
-                <div class="card-body gap-2">
-                    <h2 class="card-title justify-center">
-                        12.90$-18.85$
-                    </h2>
-                    <hr>
-                    <h3 class=" text-center font-extrabold">Apples</h3>
-                    <div class="grid place-content-center gap-4">
-                        <div class="icon text-2xl">
-                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="text-center ">
-                            <button class="text-center text-red-500 font-semibold hover:text-blue-500"
-                                onclick="my_modal_1.showModal()">Details</button>
-                            <dialog id="my_modal_1" class="modal">
-                                <div class="modal-box ">
-                                    <div class="grid place-items-center gap-5 ">
-                                        <img class="" src="images/fruit6.png" alt="Apples">
-                                        <h3 class="text-4xl font-bold">Apples</h3>
-                                        <p class="px-8">Professional employees are there for you to pick the most
-                                            amazing and fresh
-                                            fruits.</p>
-                                        <div class="icon text-2xl gap-3">
-                                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="modal-action gap-4  justify-center my-4">
-                                        <form method="dialog">
-                                            <!-- if there is a button in form, it will close the modal -->
-                                            <button class="btn hover:bg-red-500 hover:text-white px-5">Close</button>
-                                        </form>
-                                        <form method="dialog">
-                                            <!-- if there is a button in form, it will close the modal -->
-                                            <button
-                                                class="btn px-9 hover:bg-blue-600 bg-blue-700 text-white">Buy</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </dialog>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <!-- Sceond Card -->
-            <div class="card bg-base-100 p-4 shadow-xl border">
-                <figure>
-                    <img src="images/fruit7.png" alt="Shoes" />
-                </figure>
-                <div class="card-body gap-2">
-                    <h2 class="card-title justify-center">
-                        12.90$-18.85$
-                    </h2>
-                    <hr>
-                    <h3 class=" text-center font-extrabold">Orange</h3>
-                    <div class="grid place-content-center gap-4">
-                        <div class="icon text-2xl">
-                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="text-center ">
-                            <button class="text-center text-red-500 font-semibold hover:text-blue-500"
-                                onclick="my_modal_2.showModal()">Details</button>
-                            <dialog id="my_modal_2" class="modal">
-                                <div class="modal-box ">
-                                    <div class="grid place-items-center gap-5 ">
-                                        <img class="" src="images/fruit7.png" alt="Apples">
-                                        <h3 class="text-4xl font-bold">Orange</h3>
-                                        <p class="px-8">Professional employees are there for you to pick the most
-                                            amazing and fresh
-                                            fruits.</p>
-                                        <div class="icon text-2xl gap-3">
-                                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="modal-action gap-4  justify-center my-4">
-                                        <form method="dialog">
-                                            <!-- if there is a button in form, it will close the modal -->
-                                            <button class="btn hover:bg-red-500 hover:text-white px-5">Close</button>
-                                        </form>
-                                        <form method="dialog">
-                                            <!-- if there is a button in form, it will close the modal -->
-                                            <button
-                                                class="btn px-9 hover:bg-blue-600 bg-blue-700 text-white">Buy</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </dialog>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- thirad card -->
-            <div class="card bg-base-100 p-4 shadow-xl border">
-                <figure>
-                    <img src="images/fruit8.png" alt="Shoes" />
-                </figure>
-                <div class="card-body gap-2">
-                    <h2 class="card-title justify-center">
-                        12.90$-18.85$
-                    </h2>
-                    <hr>
-                    <h3 class=" text-center font-extrabold ">Red Dragon</h3>
-                    <div class="grid place-content-center gap-4">
-                        <div class="icon text-2xl">
-                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="text-center ">
-                            <button class="text-center text-red-500 font-semibold hover:text-blue-500"
-                                onclick="my_modal_3.showModal()">Details</button>
-                            <dialog id="my_modal_3" class="modal">
-                                <div class="modal-box ">
-                                    <div class="grid place-items-center gap-5 ">
-                                        <img class="" src="images/fruit8.png" alt="Apples">
-                                        <h3 class="text-4xl font-bold">Red Dragon</h3>
-                                        <p class="px-8">Professional employees are there for you to pick the most
-                                            amazing and fresh
-                                            fruits.</p>
-                                        <div class="icon text-2xl gap-3">
-                                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="modal-action gap-4  justify-center my-4">
-                                        <form method="dialog">
-                                            <!-- if there is a button in form, it will close the modal -->
-                                            <button class="btn hover:bg-red-500 hover:text-white px-5">Close</button>
-                                        </form>
-                                        <form method="dialog">
-                                            <!-- if there is a button in form, it will close the modal -->
-                                            <button
-                                                class="btn px-9 hover:bg-blue-600 bg-blue-700 text-white">Buy</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </dialog>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <!-- forth card -->
-            <div class="card bg-base-100 p-4 shadow-xl border">
-                <figure>
-                    <img src="images/fruit9.png" alt="Shoes" />
-                </figure>
-                <div class="card-body gap-2">
-                    <h2 class="card-title justify-center">
-                        12.90$-18.85$
-                    </h2>
-                    <hr>
-                    <h3 class=" text-center font-extrabold">Banana</h3>
-                    <div class="grid place-content-center gap-4">
-                        <div class="icon text-2xl">
-                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                            <i class="fa-solid fa-star"></i>
-                        </div>
-                        <div class="text-center ">
-                            <button class="text-center text-red-500 font-semibold hover:text-blue-500"
-                                onclick="my_modal_4.showModal()">Details</button>
-                            <dialog id="my_modal_4" class="modal">
-                                <div class="modal-box ">
-                                    <div class="grid place-items-center gap-5 ">
-                                        <img class="" src="images/fruit9.png" alt="Apples">
-                                        <h3 class="text-4xl font-bold">Banana</h3>
-                                        <p class="px-8">Professional employees are there for you to pick the most
-                                            amazing and fresh
-                                            fruits.</p>
-                                        <div class="icon text-2xl gap-3">
-                                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                                            <i class="fa-solid fa-star" style="color:#FFD43B"></i>
-                                            <i class="fa-solid fa-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="modal-action gap-4  justify-center my-4">
-                                        <form method="dialog">
-                                            <!-- if there is a button in form, it will close the modal -->
-                                            <button class="btn hover:bg-red-500 hover:text-white px-5">Close</button>
-                                        </form>
-                                        <form method="dialog">
-                                            <!-- if there is a button in form, it will close the modal -->
-                                            <button
-                                                class="btn px-9 hover:bg-blue-600 bg-blue-700 text-white">Buy</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </dialog>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Shop All -->
-        <section class="flex justify-center mt-12">
-            <a class="bg-bg-fruts hover:bg-red-600 px-8 py-4 rounded-lg text-white font-semibold text-xl transition-colors"
-                href="#">Shop All</a>
-        </section>
-        <!-- Meet the team section -->
-        <section class="mt-20 lg:mt-32 px-4 lg:px-0">
-            <div class="card bg-base-100 image-full shadow-2xl overflow-hidden min-h-[600px] lg:min-h-0">
-                <figure>
-                    <img class="w-full h-full object-cover" src="images/banner1.png" alt="Team Background" />
-                </figure>
-                <div class="card-body text-center p-6 lg:p-12">
-                    <h2 class="text-3xl lg:text-5xl font-extrabold mb-4">Meet the team section</h2>
-                    <p class="max-w-xl mx-auto mb-10">Contrary to popular belief, is not simply random text. It has
-                        roots in a piece of classical
-                        Latin literature from 45 BC, making it over 2000 years old.</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-                        <div class="flex flex-col items-center">
-                            <img src="images/member1.png" alt="Awlad Hossain" class="w-24 h-24 mb-4">
-                            <h3 class="text-xl font-bold">Awlad Hossain</h3>
-                            <p class="text-sm mb-4">Fruits Expert</p>
-                            <div class="flex gap-4 text-xl">
-                                <i class="fa-brands fa-facebook cursor-pointer hover:text-red-500"
-                                    style="color: #F85559;"></i>
-                                <i class="fa-brands fa-x-twitter cursor-pointer hover:text-red-500"
-                                    style="color: #F85559;"></i>
-                                <i class="fa-brands fa-linkedin cursor-pointer hover:text-red-500"
-                                    style="color: #F85559;"></i>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <img src="images/member2.png" alt="Safia Chowdhury" class="w-24 h-24 mb-4">
-                            <h3 class="text-xl font-bold">Safia Chowdhury</h3>
-                            <p class="text-sm mb-4">Fruits Expert</p>
-                            <div class="flex gap-4 text-xl">
-                                <i class="fa-brands fa-facebook cursor-pointer hover:text-red-500"
-                                    style="color: #F85559;"></i>
-                                <i class="fa-brands fa-x-twitter cursor-pointer hover:text-red-500"
-                                    style="color: #F85559;"></i>
-                                <i class="fa-brands fa-linkedin cursor-pointer hover:text-red-500"
-                                    style="color: #F85559;"></i>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <img src="images/member3.png" alt="Rokib Hossain" class="w-24 h-24 mb-4">
-                            <h3 class="text-xl font-bold">Rokib Hossain</h3>
-                            <p class="text-sm mb-4">Fruits Expert</p>
-                            <div class="flex gap-4 text-xl">
-                                <i class="fa-brands fa-facebook cursor-pointer hover:text-red-500"
-                                    style="color: #F85559;"></i>
-                                <i class="fa-brands fa-x-twitter cursor-pointer hover:text-red-500"
-                                    style="color: #F85559;"></i>
-                                <i class="fa-brands fa-linkedin cursor-pointer hover:text-red-500"
-                                    style="color: #F85559;"></i>
-                            </div>
-                        </div>
-                        <div class="flex flex-col items-center">
-                            <img src="images/member4.png" alt="Chaity" class="w-24 h-24 mb-4">
-                            <h3 class="text-xl font-bold">Chaity</h3>
-                            <p class="text-sm mb-4">Fruits Expert</p>
-                            <div class="flex gap-4 text-xl">
-                                <i class="fa-brands fa-facebook cursor-pointer hover:text-red-500"
-                                    style="color: #F85559;"></i>
-                                <i class="fa-brands fa-x-twitter cursor-pointer hover:text-red-500"
-                                    style="color: #F85559;"></i>
-                                <i class="fa-brands fa-linkedin cursor-pointer hover:text-red-500"
-                                    style="color: #F85559;"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Why Choose Us -->
-        <section class="mt-20 lg:mt-32 px-4 lg:px-0">
-            <div class="text-center">
-                <h3 class="text-3xl lg:text-5xl font-extrabold">Why Choose Us</h3>
-                <p class="mt-6 max-w-2xl mx-auto">Contrary to popular belief, is not simply random text. It has roots in
-                    a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-            </div>
-
-            <div class="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
-                <!-- Left Column -->
-                <div class="space-y-12 order-2 lg:order-1">
-                    <div class="flex flex-col lg:flex-row items-center lg:items-start text-center lg:text-left gap-4">
-                        <div class="bg-gray-200 p-4 rounded-full flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-users text-2xl text-gray-700"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-xl font-bold border-b-2 border-gray-300 pb-2 mb-4 inline-block lg:block">
-                                Dedicated Team</h4>
-                            <p>Professional employees are there for you to pick the most amazing and fresh fruits.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col lg:flex-row items-center lg:items-start text-center lg:text-left gap-4">
-                        <div class="bg-gray-200 p-4 rounded-full flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-heart text-2xl text-gray-700"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-xl font-bold border-b-2 border-gray-300 pb-2 mb-4 inline-block lg:block">
-                                Fresh is Best</h4>
-                            <p>Professional employees are there for you to pick the most amazing and fresh fruits.</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col lg:flex-row items-center lg:items-start text-center lg:text-left gap-4">
-                        <div class="bg-gray-200 p-4 rounded-full flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-gift text-2xl text-gray-700"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-xl font-bold border-b-2 border-gray-300 pb-2 mb-4 inline-block lg:block">
-                                Gift Certificates</h4>
-                            <p>Professional employees are there for you to pick the most amazing and fresh fruits.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Center Column (Image) -->
-                <div class="flex justify-center order-1 lg:order-2">
-                    <img src="images/whychoose1.png" alt="Why Choose Us" class="max-w-full h-auto">
-                </div>
-
-                <!-- Right Column -->
-                <div class="space-y-12 order-3">
-                    <div
-                        class="flex flex-col lg:flex-row-reverse items-center lg:items-start text-center lg:text-right gap-4">
-                        <div class="bg-gray-200 p-4 rounded-full flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-truck text-2xl text-gray-700"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-xl font-bold border-b-2 border-gray-300 pb-2 mb-4 inline-block lg:block">
-                                Integrated Supplier</h4>
-                            <p>Professional employees are there for you to pick the most amazing and fresh fruits.</p>
-                        </div>
-                    </div>
-                    <div
-                        class="flex flex-col lg:flex-row-reverse items-center lg:items-start text-center lg:text-right gap-4">
-                        <div class="bg-gray-200 p-4 rounded-full flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-leaf text-2xl text-gray-700"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-xl font-bold border-b-2 border-gray-300 pb-2 mb-4 inline-block lg:block">
-                                Sustainable Practice</h4>
-                            <p>Professional employees are there for you to pick the most amazing and fresh fruits.</p>
-                        </div>
-                    </div>
-                    <div
-                        class="flex flex-col lg:flex-row-reverse items-center lg:items-start text-center lg:text-right gap-4">
-                        <div class="bg-gray-200 p-4 rounded-full flex items-center justify-center shrink-0">
-                            <i class="fa-solid fa-thumbs-up text-2xl text-gray-700"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-xl font-bold border-b-2 border-gray-300 pb-2 mb-4 inline-block lg:block">The
-                                Benefits Only</h4>
-                            <p>Professional employees are there for you to pick the most amazing and fresh fruits.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-    <footer class="footer footer-center bg-black text-white p-10 mt-20">
-        <div class="flex items-center gap-4">
-            <img src="images/logo.png" alt="Fruit Burist" class="w-10 lg:w-14">
-            <h1 class="text-3xl lg:text-5xl font-semibold">Fruit Burist</h1>
+          </div>
         </div>
-        <nav class="grid grid-cols-3 md:grid-flow-col gap-6 lg:gap-10 text-sm lg:text-base">
-            <a class="link link-hover">Home</a>
-            <a class="link link-hover">About us</a>
-            <a class="link link-hover">Shop</a>
-            <a class="link link-hover">All Fruits</a>
-            <a class="link link-hover">Support</a>
-            <a class="link link-hover">My Account</a>
-        </nav>
-        <nav>
-            <div class="grid grid-flow-col gap-6 text-2xl">
-                <a class="hover:text-red-500 transition-colors"><i class="fa-brands fa-twitter"></i></a>
-                <a class="hover:text-red-500 transition-colors"><i class="fa-brands fa-youtube"></i></a>
-                <a class="hover:text-red-500 transition-colors"><i class="fa-brands fa-facebook"></i></a>
-                <a class="hover:text-red-500 transition-colors"><i class="fa-brands fa-linkedin"></i></a>
-                <a class="hover:text-red-500 transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                <a class="hover:text-red-500 transition-colors"><i class="fa-brands fa-apple"></i></a>
+      </section>
+      <!-- card -->
+      <section
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4 lg:px-0 mt-20"
+      >
+        <!-- first card -->
+        <div class="card bg-base-100 p-4 shadow-xl border">
+          <figure>
+            <img src="images/fruit6.png" alt="Shoes" />
+          </figure>
+          <div class="card-body gap-2">
+            <h2 class="card-title justify-center">12.90$-18.85$</h2>
+            <hr />
+            <h3 class="text-center font-extrabold">Apples</h3>
+            <div class="grid place-content-center gap-4">
+              <div class="icon text-2xl">
+                <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <div class="text-center">
+                <button
+                  class="text-center text-red-500 font-semibold hover:text-blue-500"
+                  onclick="my_modal_1.showModal()"
+                >
+                  Details
+                </button>
+                <dialog id="my_modal_1" class="modal">
+                  <div class="modal-box">
+                    <div class="grid place-items-center gap-5">
+                      <img class="" src="images/fruit6.png" alt="Apples" />
+                      <h3 class="text-4xl font-bold">Apples</h3>
+                      <p class="px-8">
+                        Professional employees are there for you to pick the
+                        most amazing and fresh fruits.
+                      </p>
+                      <div class="icon text-2xl gap-3">
+                        <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                        <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                        <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                        <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+                    </div>
+                    <div class="modal-action gap-4 justify-center my-4">
+                      <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button
+                          class="btn hover:bg-red-500 hover:text-white px-5"
+                        >
+                          Close
+                        </button>
+                      </form>
+                      <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button
+                          class="btn px-9 hover:bg-blue-600 bg-blue-700 text-white btn-add-cart"
+                        >
+                          Buy
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </dialog>
+              </div>
             </div>
-        </nav>
-    </footer>
+          </div>
+        </div>
+        <!-- Sceond Card -->
+        <div class="card bg-base-100 p-4 shadow-xl border">
+          <figure>
+            <img src="images/fruit7.png" alt="Shoes" />
+          </figure>
+          <div class="card-body gap-2">
+            <h2 class="card-title justify-center">12.90$-18.85$</h2>
+            <hr />
+            <h3 class="text-center font-extrabold">Orange</h3>
+            <div class="grid place-content-center gap-4">
+              <div class="icon text-2xl">
+                <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <div class="text-center">
+                <button
+                  class="text-center text-red-500 font-semibold hover:text-blue-500"
+                  onclick="my_modal_2.showModal()"
+                >
+                  Details
+                </button>
+                <dialog id="my_modal_2" class="modal">
+                  <div class="modal-box">
+                    <div class="grid place-items-center gap-5">
+                      <img class="" src="images/fruit7.png" alt="Apples" />
+                      <h3 class="text-4xl font-bold">Orange</h3>
+                      <p class="px-8">
+                        Professional employees are there for you to pick the
+                        most amazing and fresh fruits.
+                      </p>
+                      <div class="icon text-2xl gap-3">
+                        <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                        <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                        <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                        <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+                    </div>
+                    <div class="modal-action gap-4 justify-center my-4">
+                      <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button
+                          class="btn hover:bg-red-500 hover:text-white px-5"
+                        >
+                          Close
+                        </button>
+                      </form>
+                      <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button
+                          class="btn px-9 hover:bg-blue-600 bg-blue-700 text-white btn-add-cart"
+                        >
+                          Buy
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </dialog>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- thirad card -->
+        <div class="card bg-base-100 p-4 shadow-xl border">
+          <figure>
+            <img src="images/fruit8.png" alt="Shoes" />
+          </figure>
+          <div class="card-body gap-2">
+            <h2 class="card-title justify-center">12.90$-18.85$</h2>
+            <hr />
+            <h3 class="text-center font-extrabold">Red Dragon</h3>
+            <div class="grid place-content-center gap-4">
+              <div class="icon text-2xl">
+                <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <div class="text-center">
+                <button
+                  class="text-center text-red-500 font-semibold hover:text-blue-500"
+                  onclick="my_modal_3.showModal()"
+                >
+                  Details
+                </button>
+                <dialog id="my_modal_3" class="modal">
+                  <div class="modal-box">
+                    <div class="grid place-items-center gap-5">
+                      <img class="" src="images/fruit8.png" alt="Apples" />
+                      <h3 class="text-4xl font-bold">Red Dragon</h3>
+                      <p class="px-8">
+                        Professional employees are there for you to pick the
+                        most amazing and fresh fruits.
+                      </p>
+                      <div class="icon text-2xl gap-3">
+                        <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                        <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                        <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                        <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+                    </div>
+                    <div class="modal-action gap-4 justify-center my-4">
+                      <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button
+                          class="btn hover:bg-red-500 hover:text-white px-5"
+                        >
+                          Close
+                        </button>
+                      </form>
+                      <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button
+                          class="btn px-9 hover:bg-blue-600 bg-blue-700 text-white btn-add-cart"
+                        >
+                          Buy
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </dialog>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- forth card -->
+        <div class="card bg-base-100 p-4 shadow-xl border">
+          <figure>
+            <img src="images/fruit9.png" alt="Shoes" />
+          </figure>
+          <div class="card-body gap-2">
+            <h2 class="card-title justify-center">12.90$-18.85$</h2>
+            <hr />
+            <h3 class="text-center font-extrabold">Banana</h3>
+            <div class="grid place-content-center gap-4">
+              <div class="icon text-2xl">
+                <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <div class="text-center">
+                <button
+                  class="text-center text-red-500 font-semibold hover:text-blue-500"
+                  onclick="my_modal_4.showModal()"
+                >
+                  Details
+                </button>
+                <dialog id="my_modal_4" class="modal">
+                  <div class="modal-box">
+                    <div class="grid place-items-center gap-5">
+                      <img class="" src="images/fruit9.png" alt="Apples" />
+                      <h3 class="text-4xl font-bold">Banana</h3>
+                      <p class="px-8">
+                        Professional employees are there for you to pick the
+                        most amazing and fresh fruits.
+                      </p>
+                      <div class="icon text-2xl gap-3">
+                        <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                        <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                        <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                        <i class="fa-solid fa-star" style="color: #ffd43b"></i>
+                        <i class="fa-solid fa-star"></i>
+                      </div>
+                    </div>
+                    <div class="modal-action gap-4 justify-center my-4">
+                      <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button
+                          class="btn hover:bg-red-500 hover:text-white px-5"
+                        >
+                          Close
+                        </button>
+                      </form>
+                      <form method="dialog">
+                        <!-- if there is a button in form, it will close the modal -->
+                        <button
+                          class="btn px-9 hover:bg-blue-600 bg-blue-700 text-white btn-add-cart"
+                        >
+                          Buy
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </dialog>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Shop All -->
+      <section class="flex justify-center mt-12">
+        <a
+          class="bg-bg-fruts hover:bg-red-600 px-8 py-4 rounded-lg text-white font-semibold text-xl transition-colors"
+          href="#"
+          >Shop All</a
+        >
+      </section>
+      <!-- Meet the team section -->
+      <section class="mt-20 lg:mt-32 px-4 lg:px-0">
+        <div
+          class="card bg-base-100 image-full shadow-2xl overflow-hidden min-h-[600px] lg:min-h-0"
+        >
+          <figure>
+            <img
+              class="w-full h-full object-cover"
+              src="images/banner1.png"
+              alt="Team Background"
+            />
+          </figure>
+          <div class="card-body text-center p-6 lg:p-12">
+            <h2 class="text-3xl lg:text-5xl font-extrabold mb-4">
+              Meet the team section
+            </h2>
+            <p class="max-w-xl mx-auto mb-10">
+              Contrary to popular belief, is not simply random text. It has
+              roots in a piece of classical Latin literature from 45 BC, making
+              it over 2000 years old.
+            </p>
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8"
+            >
+              <div class="flex flex-col items-center">
+                <img
+                  src="images/member1.png"
+                  alt="Awlad Hossain"
+                  class="w-24 h-24 mb-4"
+                />
+                <h3 class="text-xl font-bold">Awlad Hossain</h3>
+                <p class="text-sm mb-4">Fruits Expert</p>
+                <div class="flex gap-4 text-xl">
+                  <i
+                    class="fa-brands fa-facebook cursor-pointer hover:text-red-500"
+                    style="color: #f85559"
+                  ></i>
+                  <i
+                    class="fa-brands fa-x-twitter cursor-pointer hover:text-red-500"
+                    style="color: #f85559"
+                  ></i>
+                  <i
+                    class="fa-brands fa-linkedin cursor-pointer hover:text-red-500"
+                    style="color: #f85559"
+                  ></i>
+                </div>
+              </div>
+              <div class="flex flex-col items-center">
+                <img
+                  src="images/member2.png"
+                  alt="Safia Chowdhury"
+                  class="w-24 h-24 mb-4"
+                />
+                <h3 class="text-xl font-bold">Safia Chowdhury</h3>
+                <p class="text-sm mb-4">Fruits Expert</p>
+                <div class="flex gap-4 text-xl">
+                  <i
+                    class="fa-brands fa-facebook cursor-pointer hover:text-red-500"
+                    style="color: #f85559"
+                  ></i>
+                  <i
+                    class="fa-brands fa-x-twitter cursor-pointer hover:text-red-500"
+                    style="color: #f85559"
+                  ></i>
+                  <i
+                    class="fa-brands fa-linkedin cursor-pointer hover:text-red-500"
+                    style="color: #f85559"
+                  ></i>
+                </div>
+              </div>
+              <div class="flex flex-col items-center">
+                <img
+                  src="images/member3.png"
+                  alt="Rokib Hossain"
+                  class="w-24 h-24 mb-4"
+                />
+                <h3 class="text-xl font-bold">Rokib Hossain</h3>
+                <p class="text-sm mb-4">Fruits Expert</p>
+                <div class="flex gap-4 text-xl">
+                  <i
+                    class="fa-brands fa-facebook cursor-pointer hover:text-red-500"
+                    style="color: #f85559"
+                  ></i>
+                  <i
+                    class="fa-brands fa-x-twitter cursor-pointer hover:text-red-500"
+                    style="color: #f85559"
+                  ></i>
+                  <i
+                    class="fa-brands fa-linkedin cursor-pointer hover:text-red-500"
+                    style="color: #f85559"
+                  ></i>
+                </div>
+              </div>
+              <div class="flex flex-col items-center">
+                <img
+                  src="images/member4.png"
+                  alt="Chaity"
+                  class="w-24 h-24 mb-4"
+                />
+                <h3 class="text-xl font-bold">Chaity</h3>
+                <p class="text-sm mb-4">Fruits Expert</p>
+                <div class="flex gap-4 text-xl">
+                  <i
+                    class="fa-brands fa-facebook cursor-pointer hover:text-red-500"
+                    style="color: #f85559"
+                  ></i>
+                  <i
+                    class="fa-brands fa-x-twitter cursor-pointer hover:text-red-500"
+                    style="color: #f85559"
+                  ></i>
+                  <i
+                    class="fa-brands fa-linkedin cursor-pointer hover:text-red-500"
+                    style="color: #f85559"
+                  ></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Why Choose Us -->
+      <section class="mt-20 lg:mt-32 px-4 lg:px-0">
+        <div class="text-center">
+          <h3 class="text-3xl lg:text-5xl font-extrabold">Why Choose Us</h3>
+          <p class="mt-6 max-w-2xl mx-auto">
+            Contrary to popular belief, is not simply random text. It has roots
+            in a piece of classical Latin literature from 45 BC, making it over
+            2000 years old.
+          </p>
+        </div>
+
+        <div class="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+          <!-- Left Column -->
+          <div class="space-y-12 order-2 lg:order-1">
+            <div
+              class="flex flex-col lg:flex-row items-center lg:items-start text-center lg:text-left gap-4"
+            >
+              <div
+                class="bg-gray-200 p-4 rounded-full flex items-center justify-center shrink-0"
+              >
+                <i class="fa-solid fa-users text-2xl text-gray-700"></i>
+              </div>
+              <div>
+                <h4
+                  class="text-xl font-bold border-b-2 border-gray-300 pb-2 mb-4 inline-block lg:block"
+                >
+                  Dedicated Team
+                </h4>
+                <p>
+                  Professional employees are there for you to pick the most
+                  amazing and fresh fruits.
+                </p>
+              </div>
+            </div>
+            <div
+              class="flex flex-col lg:flex-row items-center lg:items-start text-center lg:text-left gap-4"
+            >
+              <div
+                class="bg-gray-200 p-4 rounded-full flex items-center justify-center shrink-0"
+              >
+                <i class="fa-solid fa-heart text-2xl text-gray-700"></i>
+              </div>
+              <div>
+                <h4
+                  class="text-xl font-bold border-b-2 border-gray-300 pb-2 mb-4 inline-block lg:block"
+                >
+                  Fresh is Best
+                </h4>
+                <p>
+                  Professional employees are there for you to pick the most
+                  amazing and fresh fruits.
+                </p>
+              </div>
+            </div>
+            <div
+              class="flex flex-col lg:flex-row items-center lg:items-start text-center lg:text-left gap-4"
+            >
+              <div
+                class="bg-gray-200 p-4 rounded-full flex items-center justify-center shrink-0"
+              >
+                <i class="fa-solid fa-gift text-2xl text-gray-700"></i>
+              </div>
+              <div>
+                <h4
+                  class="text-xl font-bold border-b-2 border-gray-300 pb-2 mb-4 inline-block lg:block"
+                >
+                  Gift Certificates
+                </h4>
+                <p>
+                  Professional employees are there for you to pick the most
+                  amazing and fresh fruits.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Center Column (Image) -->
+          <div class="flex justify-center order-1 lg:order-2">
+            <img
+              src="images/whychoose1.png"
+              alt="Why Choose Us"
+              class="max-w-full h-auto"
+            />
+          </div>
+
+          <!-- Right Column -->
+          <div class="space-y-12 order-3">
+            <div
+              class="flex flex-col lg:flex-row-reverse items-center lg:items-start text-center lg:text-right gap-4"
+            >
+              <div
+                class="bg-gray-200 p-4 rounded-full flex items-center justify-center shrink-0"
+              >
+                <i class="fa-solid fa-truck text-2xl text-gray-700"></i>
+              </div>
+              <div>
+                <h4
+                  class="text-xl font-bold border-b-2 border-gray-300 pb-2 mb-4 inline-block lg:block"
+                >
+                  Integrated Supplier
+                </h4>
+                <p>
+                  Professional employees are there for you to pick the most
+                  amazing and fresh fruits.
+                </p>
+              </div>
+            </div>
+            <div
+              class="flex flex-col lg:flex-row-reverse items-center lg:items-start text-center lg:text-right gap-4"
+            >
+              <div
+                class="bg-gray-200 p-4 rounded-full flex items-center justify-center shrink-0"
+              >
+                <i class="fa-solid fa-leaf text-2xl text-gray-700"></i>
+              </div>
+              <div>
+                <h4
+                  class="text-xl font-bold border-b-2 border-gray-300 pb-2 mb-4 inline-block lg:block"
+                >
+                  Sustainable Practice
+                </h4>
+                <p>
+                  Professional employees are there for you to pick the most
+                  amazing and fresh fruits.
+                </p>
+              </div>
+            </div>
+            <div
+              class="flex flex-col lg:flex-row-reverse items-center lg:items-start text-center lg:text-right gap-4"
+            >
+              <div
+                class="bg-gray-200 p-4 rounded-full flex items-center justify-center shrink-0"
+              >
+                <i class="fa-solid fa-thumbs-up text-2xl text-gray-700"></i>
+              </div>
+              <div>
+                <h4
+                  class="text-xl font-bold border-b-2 border-gray-300 pb-2 mb-4 inline-block lg:block"
+                >
+                  The Benefits Only
+                </h4>
+                <p>
+                  Professional employees are there for you to pick the most
+                  amazing and fresh fruits.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <div id="footer-placeholder"></div>
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
-</body>
-
+  </body>
 </html>

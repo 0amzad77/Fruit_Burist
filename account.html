@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Account - Fruit Burist</title>
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- tailwind and daisy UI -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lato google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/bac2c0934e.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- tailwind custom color -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: "#da373d",
+              "bg-fruts": "#F85559",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="font-Lato">
+    <div id="header-placeholder"></div>
+
+    <main class="container mx-auto px-4 lg:px-0 py-20">
+      <!-- Auth Container -->
+      <div
+        class="max-w-md mx-auto bg-base-100 p-10 rounded-2xl shadow-xl border border-gray-100"
+      >
+        <!-- Login Form -->
+        <div id="login-container">
+          <h1 class="text-4xl font-extrabold mb-10 text-center">
+            Login to Account
+          </h1>
+          <form id="login-form" class="space-y-6">
+            <div class="form-control">
+              <label class="label"
+                ><span class="label-text">Email Address</span></label
+              >
+              <input
+                type="email"
+                placeholder="email@example.com"
+                class="input input-bordered w-full focus:outline-none focus:border-bg-fruts"
+                required
+              />
+            </div>
+            <div class="form-control">
+              <label class="label"
+                ><span class="label-text">Password</span></label
+              >
+              <input
+                type="password"
+                placeholder="********"
+                class="input input-bordered w-full focus:outline-none focus:border-bg-fruts"
+                required
+              />
+              <label class="label"
+                ><button
+                  type="button"
+                  onclick="toggleAuth('forgot')"
+                  class="label-text-alt link link-hover"
+                >
+                  Forgot password?
+                </button></label
+              >
+            </div>
+            <div class="form-control mt-6">
+              <button
+                type="submit"
+                class="btn bg-bg-fruts text-white hover:bg-red-600 border-none w-full"
+              >
+                Login
+              </button>
+            </div>
+            <div class="text-center mt-6">
+              <p class="text-sm">
+                Don't have an account?
+                <button
+                  type="button"
+                  onclick="toggleAuth('register')"
+                  class="text-bg-fruts font-bold link-hover"
+                >
+                  Sign Up
+                </button>
+              </p>
+            </div>
+          </form>
+        </div>
+
+        <!-- Register Form -->
+        <div id="register-container" class="hidden">
+          <h1 class="text-4xl font-extrabold mb-10 text-center">
+            Register Account
+          </h1>
+          <form id="register-form" class="space-y-6">
+            <div class="form-control">
+              <label class="label"
+                ><span class="label-text">Register As</span></label
+              >
+              <select
+                id="reg-role"
+                class="select select-bordered w-full focus:outline-none focus:border-bg-fruts"
+              >
+                <option value="client">Client</option>
+                <option value="owner">Shop Owner</option>
+              </select>
+            </div>
+            <div class="form-control">
+              <label class="label"
+                ><span class="label-text">Full Name</span></label
+              >
+              <input
+                type="text"
+                placeholder="John Doe"
+                class="input input-bordered w-full focus:outline-none focus:border-bg-fruts"
+                required
+              />
+            </div>
+            <div class="form-control">
+              <label class="label"
+                ><span class="label-text">Email Address</span></label
+              >
+              <input
+                type="email"
+                placeholder="email@example.com"
+                class="input input-bordered w-full focus:outline-none focus:border-bg-fruts"
+                required
+              />
+            </div>
+            <div class="form-control">
+              <label class="label"
+                ><span class="label-text">Password</span></label
+              >
+              <input
+                type="password"
+                placeholder="********"
+                class="input input-bordered w-full focus:outline-none focus:border-bg-fruts"
+                required
+              />
+            </div>
+            <div class="form-control mt-6">
+              <button
+                type="submit"
+                class="btn bg-bg-fruts text-white hover:bg-red-600 border-none w-full"
+              >
+                Register
+              </button>
+            </div>
+            <div class="text-center mt-6">
+              <p class="text-sm">
+                Already have an account?
+                <button
+                  type="button"
+                  onclick="toggleAuth('login')"
+                  class="text-bg-fruts font-bold link-hover"
+                >
+                  Login
+                </button>
+              </p>
+            </div>
+          </form>
+        </div>
+
+        <!-- Forgot Password Form -->
+        <div id="forgot-container" class="hidden">
+          <h1 class="text-4xl font-extrabold mb-6 text-center">
+            Reset Password
+          </h1>
+          <p class="text-center text-gray-500 mb-8">
+            Enter your email and we'll send you instructions to reset your
+            password.
+          </p>
+          <form id="forgot-form" class="space-y-6">
+            <div class="form-control">
+              <label class="label"
+                ><span class="label-text">Email Address</span></label
+              >
+              <input
+                type="email"
+                placeholder="email@example.com"
+                class="input input-bordered w-full focus:outline-none focus:border-bg-fruts"
+                required
+              />
+            </div>
+            <div class="form-control mt-6">
+              <button
+                type="submit"
+                class="btn bg-bg-fruts text-white hover:bg-red-600 border-none w-full"
+              >
+                Send Instructions
+              </button>
+            </div>
+            <div class="text-center mt-6">
+              <button
+                type="button"
+                onclick="toggleAuth('login')"
+                class="text-bg-fruts font-bold link-hover"
+              >
+                Back to Login
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+      function toggleAuth(type) {
+        const login = document.getElementById("login-container");
+        const register = document.getElementById("register-container");
+        const forgot = document.getElementById("forgot-container");
+
+        login.classList.add("hidden");
+        register.classList.add("hidden");
+        forgot.classList.add("hidden");
+
+        if (type === "register") {
+          register.classList.remove("hidden");
+        } else if (type === "forgot") {
+          forgot.classList.remove("hidden");
+        } else {
+          login.classList.remove("hidden");
+        }
+      }
+    </script>
+  </body>
+</html>

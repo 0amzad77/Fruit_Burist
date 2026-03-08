@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Fruits - Fruit Burist</title>
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- tailwind and daisy UI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lato google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/bac2c0934e.js" crossorigin="anonymous"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- tailwind custom color -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                        'bg-fruts': '#F85559',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="font-Lato">
+    <div id="header-placeholder"></div>
+
+    <main class="container mx-auto px-4 lg:px-0 py-20">
+        <section class="text-center">
+            <h1 class="text-5xl font-extrabold mb-10">Our Fruit Collection</h1>
+            <p class="max-w-3xl mx-auto mb-16 text-lg">Explore the variety of fruits we offer. From exotic tropical treats to seasonal favorites, we have it all.</p>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+                <!-- Detailed fruit listing -->
+                <div class="flex flex-col items-center gap-4 bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all">
+                    <img class="w-24 hover:scale-110 transition-transform" src="images/fruit1.png" alt="Grape">
+                    <h3 class="text-xl font-bold">Grape</h3>
+                    <p class="text-sm text-gray-500">Sweet & Juicy</p>
+                </div>
+                <div class="flex flex-col items-center gap-4 bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all">
+                    <img class="w-24 hover:scale-110 transition-transform" src="images/fruit2.png" alt="Orange">
+                    <h3 class="text-xl font-bold">Orange</h3>
+                    <p class="text-sm text-gray-500">Citrus Burst</p>
+                </div>
+                <div class="flex flex-col items-center gap-4 bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all">
+                    <img class="w-24 hover:scale-110 transition-transform" src="images/fruit3.png" alt="Mango">
+                    <h3 class="text-xl font-bold">Mango</h3>
+                    <p class="text-sm text-gray-500">King of Fruits</p>
+                </div>
+                <div class="flex flex-col items-center gap-4 bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all">
+                    <img class="w-24 hover:scale-110 transition-transform" src="images/fruit4.png" alt="Strawberry">
+                    <h3 class="text-xl font-bold">Strawberry</h3>
+                    <p class="text-sm text-gray-500">Berry Delight</p>
+                </div>
+                <div class="flex flex-col items-center gap-4 bg-white p-6 rounded-2xl shadow-md hover:shadow-xl transition-all">
+                    <img class="w-24 hover:scale-110 transition-transform" src="images/fruit5.png" alt="Pomegranate">
+                    <h3 class="text-xl font-bold">Pomegranate</h3>
+                    <p class="text-sm text-gray-500">Ruby Gems</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+
+</html>

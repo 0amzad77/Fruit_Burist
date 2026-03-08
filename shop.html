@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shop - Fruit Burist</title>
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- tailwind and daisy UI -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lato google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Fontawesome -->
+    <script
+      src="https://kit.fontawesome.com/bac2c0934e.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- tailwind custom color -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: "#da373d",
+              "bg-fruts": "#F85559",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="font-Lato">
+    <div id="header-placeholder"></div>
+
+    <main class="container mx-auto px-4 lg:px-0 py-20">
+      <section class="text-center">
+        <h1 class="text-5xl font-extrabold mb-10">Fruit Shop</h1>
+        <p class="max-w-2xl mx-auto mb-16 text-lg">
+          Browse our wide selection of premium fruits, harvested with care and
+          delivered fresh to you.
+        </p>
+
+        <div
+          id="dynamic-products"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20"
+        >
+          <!-- Dynamic products from owner will appear here -->
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Shop items will be listed here, reuse index card styles -->
+          <div class="card bg-base-100 p-4 shadow-xl border">
+            <figure><img src="images/fruit6.png" alt="Apples" /></figure>
+            <div class="card-body gap-2">
+              <h2 class="card-title justify-center">12.90$-18.85$</h2>
+              <hr />
+              <h3 class="text-center font-extrabold">Apples</h3>
+              <div class="card-actions justify-center mt-4">
+                <button
+                  class="btn bg-bg-fruts text-white hover:bg-red-600 border-none px-10 btn-add-cart"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card bg-base-100 p-4 shadow-xl border">
+            <figure><img src="images/fruit7.png" alt="Orange" /></figure>
+            <div class="card-body gap-2">
+              <h2 class="card-title justify-center">12.90$-18.85$</h2>
+              <hr />
+              <h3 class="text-center font-extrabold">Orange</h3>
+              <div class="card-actions justify-center mt-4">
+                <button
+                  class="btn bg-bg-fruts text-white hover:bg-red-600 border-none px-10 btn-add-cart"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card bg-base-100 p-4 shadow-xl border">
+            <figure><img src="images/fruit8.png" alt="Red Dragon" /></figure>
+            <div class="card-body gap-2">
+              <h2 class="card-title justify-center">12.90$-18.85$</h2>
+              <hr />
+              <h3 class="text-center font-extrabold">Red Dragon</h3>
+              <div class="card-actions justify-center mt-4">
+                <button
+                  class="btn bg-bg-fruts text-white hover:bg-red-600 border-none px-10 btn-add-cart"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card bg-base-100 p-4 shadow-xl border">
+            <figure><img src="images/fruit9.png" alt="Banana" /></figure>
+            <div class="card-body gap-2">
+              <h2 class="card-title justify-center">12.90$-18.85$</h2>
+              <hr />
+              <h3 class="text-center font-extrabold">Banana</h3>
+              <div class="card-actions justify-center mt-4">
+                <button
+                  class="btn bg-bg-fruts text-white hover:bg-red-600 border-none px-10 btn-add-cart"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script>
+      function loadDynamicProducts() {
+        const products = JSON.parse(
+          localStorage.getItem("shop_products") || "[]",
+        );
+        const container = document.getElementById("dynamic-products");
+        if (products.length === 0) return;
+
+        container.innerHTML = `<h2 class="col-span-full text-3xl font-bold mb-4 text-left border-b-2 border-bg-fruts pb-2">Newly Added by Owner</h2>`;
+
+        products.forEach((p) => {
+          const card = document.createElement("div");
+          card.className = "card bg-base-100 p-4 shadow-xl border";
+          card.innerHTML = `
+                    <figure><img src="${p.image}" alt="${p.name}" class="h-48 object-cover w-full" /></figure>
+                    <div class="card-body gap-2">
+                        <div class="flex justify-between items-start">
+                            <h2 class="card-title">${p.price}</h2>
+                            <span class="badge badge-sm bg-bg-fruts text-white border-none">${p.category}</span>
+                        </div>
+                        <hr>
+                        <h3 class="text-center font-extrabold text-xl">${p.name}</h3>
+                        <div class="card-actions justify-center mt-4">
+                            <button class="btn bg-bg-fruts text-white hover:bg-red-600 border-none px-10 btn-add-cart">Add to Cart</button>
+                        </div>
+                    </div>
+                `;
+          container.appendChild(card);
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", loadDynamicProducts);
+    </script>
+  </body>
+</html>
